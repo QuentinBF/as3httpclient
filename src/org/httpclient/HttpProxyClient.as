@@ -42,6 +42,7 @@ package org.httpclient
 	import flash.utils.ByteArray;
 	import org.httpclient.events.HttpDataEvent;
 	import org.httpclient.events.HttpErrorEvent;
+	import org.httpclient.events.HttpListener;
 	import org.httpclient.events.HttpRequestEvent;
 	import org.httpclient.events.HttpResponseEvent;
 	import org.httpclient.events.HttpStatusEvent;
@@ -87,7 +88,7 @@ package org.httpclient
 		 * @param	request HTTP request
 		 * @param	timeout Timeout (in millis)
 		 */
-		override public function request(uri:URI, request:HttpRequest, timeout:int = 60000):void 
+		override public function request(uri:URI, request:HttpRequest, timeout:int = -1, listener:HttpListener = null):void 
 		{
 			//turn the request headers into meta data
 			var header:String = '[URI]\n' + uri.toString() + '\n';
