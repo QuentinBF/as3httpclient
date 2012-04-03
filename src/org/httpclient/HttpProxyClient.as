@@ -139,7 +139,13 @@ package org.httpclient
 			var body:String = data.substring(data.indexOf('[body]') + 7, data.length);
 			var lines:Array = header.split('\n');
 			var line:String = lines[0].substr(0, lines[0].length - 1);
-			var matches:Array = line.match(/\AHTTP(?:\/(\d+\.\d+))?\s+(\d\d\d)\s*(.*)\z/);
+			var matches:Array = line.match(/\AHTTP(?:\/(\d+\.\d+))?\s+(100)\s*(.*)\z/);
+			if (matches) {
+				lines.shift();
+				lines.shift();
+				line = lines[0].substr(0, lines[0].length - 1);
+			}
+			matches = line.match(/\AHTTP(?:\/(\d+\.\d+))?\s+(\d\d\d)\s*(.*)\z/);
 			if (!matches) throw new Error("Invalid header: " + line + ", matches: " + matches);
 			var version:String = matches[1];
 			var code:String = matches[2];
